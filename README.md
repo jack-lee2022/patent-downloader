@@ -62,3 +62,9 @@ Files are organized automatically into `./downloads/{Assignee}/{Patent_ID}_{Titl
 ## Skill SOP
 
 See `SKILL.md` for the full download workflow and error handling (403/503 fallback, Espacenet redirect).
+
+---
+
+## Five-Skill Workflow Guide
+
+For the complete five-skill orchestration guide (Paths A / B / C), see **[WORKFLOW.md](https://github.com/jack-lee2022/patent-shared/blob/master/WORKFLOW.md)** in patent-shared.

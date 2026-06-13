@@ -7,6 +7,33 @@ description: 專門用於下載專利全文 (PDF)、專利附圖 (Images) 與結
 
 你是負責精確抓取與整理專利原始文件的自動化專家。
 
+## 五技能流程中的角色
+
+本技能是「資料收集層」的**精準下載端**。由宏觀分析結果觸發，針對特定專利取得全文 PDF 與附圖，供 `patent-structured-analysis` 進行深度精讀。
+
+```
+pro-patent-search → patent-mapping ─── 識別關鍵專利 ───▶ patent-downloader
+                                                               │
+                    patent-deployment ── 指定分析目標 ──▶      │
+                                                               ▼
+                                                    patent-structured-analysis
+```
+
+**觸發來源：**
+
+| 上游技能 | 觸發場景 | 下載目標 |
+|---------|---------|---------|
+| patent-mapping（引證網路） | 高被引基石專利需要深度拆解 | 引證網路根節點的核心件 |
+| patent-mapping（競爭者雷達） | 特定競爭者強項維度需要了解申請範圍 | 雷達圖強項維度的競爭者核心件 |
+| patent-deployment（堡壘式） | 無效搜尋，確認 Blue Ocean 格可申請性 | 目標空白格周邊的先前技術 |
+| patent-deployment（斷路式） | 取得競爭者必經瓶頸的具體權利要求 | 競爭者核心件 |
+| patent-deployment（圍牆式） | 確認周邊技術分支的現有申請範圍 | 周邊技術分支的現有專利 |
+
+**下載完成後的交棒：**
+將 PDF 絕對路徑與附圖資料夾路徑傳給 `patent-structured-analysis`，執行單篇深度精讀。
+
+---
+
 ## 核心工具路徑 (Tools Path)
 底層執行腳本位於：`./scripts/google_patents_collector.py`
 
